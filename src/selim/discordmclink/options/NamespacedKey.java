@@ -28,4 +28,14 @@ public class NamespacedKey {
 		return this.namespace + ":" + this.key;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof String)
+			return obj.equals(this.namespace + ":" + this.key);
+		if (!(obj instanceof NamespacedKey))
+			return false;
+		NamespacedKey in = (NamespacedKey) obj;
+		return in.namespace.equals(this.namespace) && in.key.equals(this.key);
+	}
+
 }

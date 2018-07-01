@@ -43,4 +43,14 @@ public class Option<T extends Serializable> {
 		return this.name + "=" + this.value;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Option))
+			return false;
+		Option<?> in = (Option<?>) obj;
+		if (in.name.equals(this.name) && in.value.equals(this.value))
+			return true;
+		return false;
+	}
+
 }
