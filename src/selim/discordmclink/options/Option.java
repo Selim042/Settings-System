@@ -74,7 +74,7 @@ public class Option<T extends Serializable> implements Comparable<Option<T>>, Se
 
 	@Override
 	public int compareTo(Option<T> o) {
-		return id.compareTo(id);
+		return id.compareTo(o.id);
 	}
 
 }
