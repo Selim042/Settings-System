@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import selim.discordmclink.options.PlayerOptions.Option;
-
 public class OptionList {
 
 	private final Map<NamespacedKey, Option<?>> OPTIONS = new ConcurrentHashMap<>();
