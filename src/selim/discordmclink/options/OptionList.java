@@ -1,25 +1,46 @@
 package selim.discordmclink.options;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class OptionList {
+public class OptionList implements Serializable {
 
-	private final Map<NamespacedKey, Option<?>> OPTIONS = new ConcurrentHashMap<>();
+	private static final long serialVersionUID = -3894357647030160614L;
+	private final List<Option<?>> OPTIONS = new CopyOnWriteArrayList<>();
 
-	public Option<?> getOption(NamespacedKey key) {
-		if (!OPTIONS.containsKey(key))
-			return null;
-		return OPTIONS.get(key);
+	public Option<?> getOption(String key) {
+		return getOption(new NamespacedKey(key));
 	}
 
-	public Set<NamespacedKey> getOptions() {
-		return OPTIONS.keySet();
+	public Option<?> getOption(NamespacedKey key) {
+		for (Option<?> o : OPTIONS)
+			if (o != null && o.getId().equals(key))
+				return o;
+		return null;
+	}
+
+	public List<NamespacedKey> getOptions() {
+		List<NamespacedKey> keys = new LinkedList<>();
+		for (Option<?> o : OPTIONS)
+			keys.add(o.getId());
+		keys.sort(null);
+		return keys;
 	}
 
 	protected void addOption(Option<?> option) {
-		OPTIONS.put(option.getName(), option);
+		addOption(option, true);
+	}
+
+	protected void addOption(Option<?> option, boolean shouldSort) {
+		OPTIONS.add(option);
+		if (shouldSort)
+			OPTIONS.sort(null);
+	}
+
+	protected void sort() {
+		OPTIONS.sort(null);
 	}
 
 }
