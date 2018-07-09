@@ -41,8 +41,6 @@ public class NamespacedKey implements Comparable<NamespacedKey>, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof String)
-			return obj.equals(this.namespace + ":" + this.key);
 		if (!(obj instanceof NamespacedKey))
 			return false;
 		NamespacedKey in = (NamespacedKey) obj;

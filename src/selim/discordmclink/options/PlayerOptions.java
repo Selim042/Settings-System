@@ -127,26 +127,8 @@ public class PlayerOptions {
 		}
 	}
 
-	private static class OptionInteger extends Option<Integer> {
-
-		public OptionInteger(String displayName, NamespacedKey name, Integer defValue) {
-			super(displayName, name, defValue);
-		}
-
-		public OptionInteger(Option<Integer> opt) {
-			super(opt);
-		}
-
-		private static final long serialVersionUID = -5988475751388317818L;
-
-		@Override
-		public boolean isValidValue(Integer value) {
-			return super.isValidValue(value) && value.intValue() >= 0;
-		}
-	}
-
 	public static void main(String... args) {
-		registerOption(new Option<Boolean>("Test Boolean", new NamespacedKey("test", "bool"), true));
+		registerOption(new OptionBoolean("Test Boolean", new NamespacedKey("test", "bool"), true));
 		registerOption(new Option<String>("Test String", new NamespacedKey("test", "string"), "Herro"));
 		registerOption(new OptionInteger("Test Integer", new NamespacedKey("test", "int"), 0));
 		System.out.println("Default options:");

@@ -45,6 +45,10 @@ public class Option<T extends Serializable> implements Comparable<Option<T>>, Se
 		return setValue(option.value);
 	}
 
+	public boolean setValue(String valueS) {
+		return false;
+	}
+
 	public boolean setValue(T value) {
 		if (value != null && isValidValue(value)) {
 			this.value = value;
@@ -59,7 +63,8 @@ public class Option<T extends Serializable> implements Comparable<Option<T>>, Se
 
 	@Override
 	public String toString() {
-		return this.displayName + "(" + this.id + ")" + "=" + this.value;
+		// return this.displayName + "(" + this.id + ")" + "=" + this.value;
+		return this.id + "=" + this.value;
 	}
 
 	@Override
